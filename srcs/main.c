@@ -6,12 +6,26 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/13 12:00:48 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/17 20:30:13 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/17 21:06:32 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <unistd.h>
+
+static void	mwheel(t_env *menv)
+{
+	char	*line;
+
+	(void)menv;
+	get_next_line(0, &line);
+	while(ft_strcmp("exit", line))
+	{
+		free(line);
+		get_next_line(0, &line);
+	}
+	free(line);
+}
 
 int		main(int ac, char **av, char **env)
 {
@@ -21,9 +35,7 @@ int		main(int ac, char **av, char **env)
 	(void)av;
 	menv = env_init(env);
 	bi_env(menv);
-	ft_printf("\n\n");
-	env_set(env_get(menv, "LOGNAME"), "PROUT");
-	bi_env(menv);
+	mwheel(menv);
 	free_env(menv);
 	return (0);
 }
