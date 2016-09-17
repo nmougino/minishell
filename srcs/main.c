@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/13 12:00:48 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/17 21:06:32 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/17 21:45:04 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	menv = env_init(env);
+	env_set(env_get(menv, "PROMPT"), "minishell: ");
 	bi_env(menv);
 	mwheel(menv);
 	free_env(menv);
