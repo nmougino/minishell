@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/16 03:31:29 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/17 18:27:19 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/17 19:13:29 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,7 @@ static t_env	*env_new(char *name, char *cont)
 	return (new);
 }
 
-char	*env_extract(char **env, char *tar)
-{
-	char	*ans;
-	size_t	len;
-
-	len = ft_strlen(tar);
-	while (ft_strncmp(*env, tar, len))
-		++env;
-	ans = ft_strdup((*env) + len + 1);
-	return (ans);
-}
-
-void	env_add(t_env **menv, char *name, char *cont)
+void			env_add(t_env **menv, char *name, char *cont)
 {
 	t_env	*new;
 	t_env	*cur;
@@ -56,17 +44,28 @@ void	env_add(t_env **menv, char *name, char *cont)
 	}
 }
 
-t_env	*env_init(char **env)
+int				env_rm(t_env **menv, char *tar)
 {
-	t_env	*menv;
-	char	*cont;
+	t_env	*prev;
+	t_env	*cur;
 
-	menv = NULL;
-	cont = env_extract(env, "PWD");
-	env_add(&menv, "PWD", cont);
-	cont = env_extract(env, "HOME");
-	env_add(&menv, "HOME", cont);
-	cont = env_extract(env, "LOGNAME");
-	env_add(&menv, "LOGNAME", cont);
-	return (menv);
+	if (!ft_strcmp((*menv)->name, tar))
+	{
+		cur = *menv;
+		(*menv) = (*menv)->next;
+		free_env_one(cur);
+		return (1);
+	}
+	prev = *menv;
+	cur = (*menv)->next;
+	while (cur && ft_strcmp(cur->name, tar))
+	{
+		prev = cur;
+		cur = cur->next;
+	}
+	if (!cur)
+		return (0);
+	prev->next = cur->next;
+	free_env_one(cur);
+	return (1);
 }
