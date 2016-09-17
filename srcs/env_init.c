@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/17 18:51:11 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/17 21:30:55 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/17 22:14:19 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ t_env		*env_init(char **env)
 		env_add(&menv, tar[i], env_extract(env, tar[i]));
 		++i;
 	}
+	env_add(&menv, "PROMPT", "minishell: ");
 	return (menv);
 }
