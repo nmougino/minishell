@@ -6,14 +6,14 @@
 #    By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/07 23:21:20 by nmougino          #+#    #+#              #
-#    Updated: 2016/09/17 00:01:13 by nmougino         ###   ########.fr        #
+#    Updated: 2016/09/17 18:07:34 by nmougino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	Compilator - clang est plus sur que gcc
 CC =		clang
 CFLAGS =	-Wall -Wextra -Werror
-ADDFLAGS =
+ADDFLAGS =	-Weverything -Wno-padded
 #ADDFLAGS =	-fsanitize=address -g3 -Weverything -Wno-padded
 
 #	Binary
