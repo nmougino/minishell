@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/13 12:02:17 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/17 19:07:53 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/17 20:28:39 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ typedef struct		s_env
 	struct s_env	*next;
 }					t_env;
 
-void				env_add(t_env **menv, char *name, char *cont);
+void				env_set(t_env *env, char *new_val);
+t_env				*env_get(t_env *menv, char *tar);
+void				env_add(t_env **menv, const char *name, char *cont);
 int					env_rm(t_env **menv, char *tar);
 
 t_env				*env_init(char **env);
