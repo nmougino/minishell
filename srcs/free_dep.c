@@ -6,14 +6,26 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/16 03:31:27 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/17 21:32:06 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/18 23:53:42 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	free_av(char **av)
+{
+	int	i;
+
+	i = 0;
+	while (av[i])
+		free(av[i]);
+	free(av);
+}
+
 void	free_env_one(t_env *env)
 {
+	if (!ft_strcmp(env->name, "SHLVL"))
+		free(env->cont);
 	if (env->name)
 		free(env->name);
 	free(env);

@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/17 18:51:11 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/17 22:14:19 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/19 00:04:01 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,17 @@ static char	*env_extract(char **env, const char *tar)
 	return (NULL);
 }
 
+static void	shlvl_init(t_env *menv)
+{
+	t_env	*tar;
+
+	tar = env_get(menv, "SHLVL");
+	env_set(tar, ft_itoa(ft_atoi(tar->cont) + 1));
+}
+
 t_env		*env_init(char **env)
 {
-	const char	*tar[6] = {"HOME", "USER", "PWD", "OLDPWD", "SHLVL", NULL};
+	const char	*tar[7] = {"HOME", "USER", "PWD", "OLDPWD", "SHLVL", "PATH", NULL};
 	t_env		*menv;
 	int			i;
 
@@ -38,5 +46,6 @@ t_env		*env_init(char **env)
 		++i;
 	}
 	env_add(&menv, "PROMPT", "minishell: ");
+	shlvl_init(menv);
 	return (menv);
 }
