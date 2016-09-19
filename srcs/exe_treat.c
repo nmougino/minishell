@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 04:09:42 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/19 02:01:57 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/19 05:16:57 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static char	*get_path(t_env *menv, char *line)
 	char		*path;
 
 	ans = NULL;
+	if (!lstat(line, &buf))
+		return (ft_strdup(line));
 	if (menv)
 	{
 		path = menv->cont;
@@ -70,8 +72,9 @@ static char	*get_com(char *line)
 	while (line[len] && line[len] != ' ')
 		++len;
 	ans = (char *)malloc(sizeof(char) * (len + 1));
-	ft_strncpy(ans, line, len);
 	ans[len] = '\0';
+	while (len--)
+		ans[len] = line[len];
 	return (ans);
 }
 
@@ -98,6 +101,7 @@ int			exe_exe(t_env *menv, char *line)
 		}
 		else
 			wait(NULL);
+		free(path);
 	}
 	else
 		ft_printf("minishell: command not found: %s\n", com);
