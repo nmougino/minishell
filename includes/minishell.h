@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/13 12:02:17 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/18 23:55:43 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/19 01:06:28 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int					env_rm(t_env **menv, char *tar);
 
 t_env				*env_init(char **env);
 
-void				exe_exe(t_env *menv, char *line);
+int					exe_exe(t_env *menv, char *line);
 
 void				bi_env(t_env *menv);
 

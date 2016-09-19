@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/16 03:31:27 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/18 23:53:42 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/19 01:10:53 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	free_av(char **av)
 
 	i = 0;
 	while (av[i])
-		free(av[i]);
+		free(av[i++]);
 	free(av);
 }
 

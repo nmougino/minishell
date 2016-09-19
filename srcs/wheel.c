@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:24:56 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/18 23:00:29 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/19 02:13:50 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,8 @@ void	wheel(t_env *menv)
 
 	live = 1;
 	line = NULL;
-	while(init_wheel(&line, menv) && live && ft_strcmp("exit", line))
-		if (line)
-		{
-			exe_exe(menv, line);
-			ft_putendl(line);
-		}
+	while(live && init_wheel(&line, menv) && ft_strcmp("exit", line))
+		if (line && line[0])
+			live = exe_exe(menv, line);
 	free(line);
 }
