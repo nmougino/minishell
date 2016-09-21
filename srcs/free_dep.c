@@ -5,30 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/16 03:31:27 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/19 01:10:53 by nmougino         ###   ########.fr       */
+/*   Created: 2016/09/21 17:13:19 by nmougino          #+#    #+#             */
+/*   Updated: 2016/09/21 17:35:30 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_av(char **av)
+void	env_del_one(t_env *elem)
 {
-	int	i;
-
-	i = 0;
-	while (av[i])
-		free(av[i++]);
-	free(av);
-}
-
-void	free_env_one(t_env *env)
-{
-	if (!ft_strcmp(env->name, "SHLVL"))
-		free(env->cont);
-	if (env->name)
-		free(env->name);
-	free(env);
+	free(elem->name);
+	free(elem->cont);
+	free(elem);
 }
 
 void	free_env(t_env *menv)
@@ -38,7 +26,7 @@ void	free_env(t_env *menv)
 	while (menv)
 	{
 		tmp = menv->next;
-		free_env_one(menv);
+		env_del_one(menv);
 		menv = tmp;
 	}
 }

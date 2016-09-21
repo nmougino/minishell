@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/13 12:02:17 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/19 01:06:28 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/21 17:16:37 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
 # include <sys/stat.h>
 # include "libft.h"
 
-/*
-**	venv contient les variables d'environement
-**	on peut envisager d'ajouter une autre structure pour stocker l'historique
-*/
-
 typedef struct		s_env
 {
 	char			*name;
@@ -30,21 +25,6 @@ typedef struct		s_env
 	struct s_env	*next;
 }					t_env;
 
-void				wheel(t_env *menv);
-
-void				env_set(t_env *env, char *new_val);
-t_env				*env_get(t_env *menv, char *tar);
-void				env_add(t_env **menv, const char *name, char *cont);
-int					env_rm(t_env **menv, char *tar);
-
-t_env				*env_init(char **env);
-
-int					exe_exe(t_env *menv, char *line);
-
-void				bi_env(t_env *menv);
-
-void				free_av(char **av);
-void				free_env_one(t_env *env);
-void				free_env(t_env *menv);
+void				env_del_one(t_env *elem);
 
 #endif
