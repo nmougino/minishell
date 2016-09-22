@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 13:55:04 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/21 17:47:46 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/22 14:24:18 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@ t_env	*env_new(char *name, char *cont)
 	ans->name = ft_strdup(name);
 	ans->cont = ft_strdup(cont);
 	return (ans);
+}
+
+int		env_set(t_env *menv, char *tar, char *new_cont)
+{
+	while (menv && ft_strcmp(menv->name, tar))
+		menv = menv->next;
+	if (!menv)
+		return (0);
+	free(menv->cont);
+	menv->cont = ft_strdup(new_cont);
+	return (1);
 }
 
 void	env_add(t_env **menv, char *name, char *cont)
