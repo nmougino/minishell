@@ -6,13 +6,13 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 17:53:04 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/22 18:16:00 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/22 18:17:07 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	env_init_extract(t_env **menv, char *nat)
+static void	env_init_extract(t_env **menv, char *nat)
 {
 	size_t	i;
 	char	*tmp_name;
@@ -32,7 +32,7 @@ void	env_init_extract(t_env **menv, char *nat)
 	free(tmp_cont);
 }
 
-t_env	*env_init(char **native)
+t_env		*env_init(char **native)
 {
 	t_env	*menv;
 
