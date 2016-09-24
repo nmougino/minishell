@@ -6,7 +6,7 @@
 #    By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/07 23:21:20 by nmougino          #+#    #+#              #
-#    Updated: 2016/09/18 23:54:31 by nmougino         ###   ########.fr        #
+#    Updated: 2016/09/23 17:29:49 by nmougino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,8 @@ OBJDIR =	objs
 
 #	Liste des sources
 SRC =		main.c \
-			bi_env.c \
 			env_init.c \
 			env_treat.c \
-			exe_treat.c \
 			free_dep.c \
 			wheel.c
 LIB =		ft

@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 17:13:19 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/21 17:35:30 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/23 17:31:02 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,14 @@ void	free_env(t_env *menv)
 		env_del_one(menv);
 		menv = tmp;
 	}
+}
+
+void	free_com(char **com)
+{
+	int	i;
+
+	i = 0;
+	while (com[i])
+		free(com[i++]);
+	free(com);
 }

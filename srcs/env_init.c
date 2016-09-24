@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 17:53:04 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/22 18:17:07 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/23 17:33:51 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	env_init_extract(t_env **menv, char *nat)
 	while (nat[i] && nat[i] != '=')
 		++i;
 	tmp_name = ft_strndup(nat, i++);
-	ft_printf("%s : %d\n", tmp_name, ft_strcmp(tmp_name, "SHLVL"));
 	if (ft_strcmp(tmp_name, "SHLVL"))
 		tmp_cont = ft_strdup(nat + i);
 	else
@@ -43,6 +42,6 @@ t_env		*env_init(char **native)
 		++native;
 	}
 	env_rm(&menv, "SHELL");
-	env_add(&menv, "PROMPT", "$> ");
+	env_add(&menv, "PROMPT", "$>");
 	return (menv);
 }
