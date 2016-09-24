@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 17:13:19 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/24 21:34:23 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/24 21:52:39 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ void	free_com(char **com)
 	int	i;
 
 	i = 0;
-	while (com[i])
-		free(com[i++]);
-	free(com[i]);
-	free(com);
+	if (com)
+	{
+		while (com[i])
+			free(com[i++]);
+		free(com[i]);
+		free(com);
+	}
 }
