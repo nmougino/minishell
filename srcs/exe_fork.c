@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/24 21:45:42 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/25 22:26:53 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/25 23:14:54 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,26 @@
 ** renvoie 1 en cas d'erreur apres avoir affiche l'erreur
 */
 
-int		exe_fork(t_env *menv, char **com)
+static void	do_fork(char *exe, char **com, t_env *menv)
+{
+	pid_t	pid;
+	//char	**env;
+
+	menv = NULL;
+	pid = fork();
+	if (!pid)
+	{
+		//env = env_conv(menv);
+		execve(exe, com, NULL);
+	}
+	else
+	{
+		waitpid(pid, NULL, 0);
+		free(exe);
+	}
+}
+
+void			exe_fork(t_env *menv, char **com)
 {
 	t_env	*tmp;
 	char	*path;
@@ -32,11 +51,7 @@ int		exe_fork(t_env *menv, char **com)
 		path = tmp->cont;
 	exe = get_exe(path, com[0]);
 	if (exe)
-	{
-		ft_printf("command path = %s\n", exe);
-		free(exe);
-	}
+		do_fork(exe, com, menv);
 	else
 		ft_dprintf(2, "minishell: command not found: %s\n", com[0]);
-	return (1);
 }

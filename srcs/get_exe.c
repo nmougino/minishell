@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/25 17:16:22 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/25 22:22:30 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/25 22:31:12 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static size_t	path_cpy(char *exe, char *path, char **ans)
 	return (len);
 }
 
-char	*get_exe(char *path, char *exe)
+char			*get_exe(char *path, char *exe)
 {
 	size_t		len;
 	struct stat	buf;
