@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/13 12:02:17 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/23 17:31:16 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/25 18:09:44 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ void				env_disp(t_env *menv);
 int					env_set(t_env *menv, char *tar, char *new_cont);
 
 t_env				*env_init(char **native);
+
+char				*get_exe(char *pathes, char *exe);
+
+int					exe_fork(t_env *menv, char **com);
 
 void				wheel(t_env *menv);
 

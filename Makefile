@@ -6,7 +6,7 @@
 #    By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/07 23:21:20 by nmougino          #+#    #+#              #
-#    Updated: 2016/09/23 17:29:49 by nmougino         ###   ########.fr        #
+#    Updated: 2016/09/25 18:08:56 by nmougino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,9 @@ OBJDIR =	objs
 SRC =		main.c \
 			env_init.c \
 			env_treat.c \
+			exe_fork.c \
 			free_dep.c \
+			get_exe.c \
 			wheel.c
 LIB =		ft
 OBJ =		$(SRC:.c=.o)
