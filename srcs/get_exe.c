@@ -6,21 +6,57 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/25 17:16:22 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/25 18:14:00 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/25 22:22:30 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_exe(char *pathes, char *exe)
+static size_t	path_cpy(char *exe, char *path, char **ans)
 {
-	int			len;
-	struct stat	buf;
+	size_t	len;
+	size_t	i;
+	size_t	j;
 
 	len = 0;
-	pathes = NULL;
-	//verifie qu'il ne s'agit pas d'un local
+	while (path[len] && path[len] != ':')
+		++len;
+	*ans = ft_strnew(len + 1 + ft_strlen(exe));
+	i = 0;
+	while (i < len)
+	{
+		(*ans)[i] = path[i];
+		++i;
+	}
+	(*ans)[i] = '/';
+	++i;
+	j = 0;
+	while (exe[j])
+		(*ans)[i++] = exe[j++];
+	return (len);
+}
+
+char	*get_exe(char *path, char *exe)
+{
+	size_t		len;
+	struct stat	buf;
+	char		*ans;
+
+	len = 0;
+	ans = NULL;
 	if (ft_strchr(exe, '/') && !lstat(exe, &buf))
 		return (ft_strdup(exe));
-	return (NULL);
+	else if (!ft_strchr(exe, '/'))
+	{
+		len = path_cpy(exe, path, &ans);
+		while (*path && lstat(ans, &buf))
+		{
+			free(ans);
+			ans = NULL;
+			path += len;
+			if (*path)
+				len = path_cpy(exe, ++path, &ans);
+		}
+	}
+	return (ans);
 }

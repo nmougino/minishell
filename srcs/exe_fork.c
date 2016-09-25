@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/24 21:45:42 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/25 18:15:22 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/25 22:26:53 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int		exe_fork(t_env *menv, char **com)
 		free(exe);
 	}
 	else
-		ft_dprintf(2, "minishell: %s: command not found\n", com[0]);
+		ft_dprintf(2, "minishell: command not found: %s\n", com[0]);
 	return (1);
 }
