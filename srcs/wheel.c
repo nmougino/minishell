@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:24:56 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/25 23:14:40 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/26 22:21:58 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,9 @@ void		wheel(t_env *menv)
 	int		live;
 	char	**com;
 
-	int u;
-
 	live = 1;
 	while (live)
 	{
-		u = -1;
 		com = com_init(menv);
 		if (com && *com && **com)
 		{
