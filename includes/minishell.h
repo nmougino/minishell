@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/13 12:02:17 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/25 23:14:02 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/26 20:19:40 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ t_env				*env_init(char **native);
 char				*get_exe(char *pathes, char *exe);
 
 void				exe_fork(t_env *menv, char **com);
+
+size_t				get_env_len(t_env *env);
+char				**env_conv(t_env *menv);
 
 void				wheel(t_env *menv);
 

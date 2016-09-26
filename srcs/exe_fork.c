@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/24 21:45:42 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/25 23:14:54 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/26 20:22:01 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,22 @@
 static void	do_fork(char *exe, char **com, t_env *menv)
 {
 	pid_t	pid;
-	//char	**env;
+	char	**env;
 
 	menv = NULL;
 	pid = fork();
+	env = env_conv(menv);
 	if (!pid)
-	{
-		//env = env_conv(menv);
 		execve(exe, com, NULL);
-	}
 	else
 	{
 		waitpid(pid, NULL, 0);
+		free_com(env);
 		free(exe);
 	}
 }
 
-void			exe_fork(t_env *menv, char **com)
+void		exe_fork(t_env *menv, char **com)
 {
 	t_env	*tmp;
 	char	*path;
