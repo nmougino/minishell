@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 17:53:04 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/23 17:33:51 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/26 22:19:17 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ t_env		*env_init(char **native)
 		++native;
 	}
 	env_rm(&menv, "SHELL");
-	env_add(&menv, "PROMPT", "$>");
+	env_add(&menv, "PROMPT", "msh.>>");
 	return (menv);
 }

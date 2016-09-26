@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:24:56 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/24 21:33:48 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/26 22:21:58 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,6 @@ static void	exe_bi(char **com)
 	com = NULL;
 }
 
-static int	exe_fork(char **com)
-{
-	com = NULL;
-	return (1);
-}
-
 void		wheel(t_env *menv)
 {
 	int		live;
@@ -73,15 +67,16 @@ void		wheel(t_env *menv)
 	while (live)
 	{
 		com = com_init(menv);
-		if (com && com[0])
+		if (com && *com && **com)
 		{
-			if ((!ft_strcmp(com[0], "exit")))
+			if (!ft_strcmp(com[0], "exit"))
 				live = 0;
 			else if (is_bi(com))
 				exe_bi(com);
-			else if (!exe_fork(com))
-				live = 0;
+			else
+				exe_fork(menv, com);
 		}
 		free_com(com);
 	}
+	ft_printf("exiting minishell...\n");
 }
