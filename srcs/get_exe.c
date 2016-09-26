@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/25 17:16:22 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/25 22:31:12 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/26 22:36:12 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char			*get_exe(char *path, char *exe)
 	ans = NULL;
 	if (ft_strchr(exe, '/') && !lstat(exe, &buf))
 		return (ft_strdup(exe));
-	else if (!ft_strchr(exe, '/'))
+	else if (path && !ft_strchr(exe, '/'))
 	{
 		len = path_cpy(exe, path, &ans);
 		while (*path && lstat(ans, &buf))
