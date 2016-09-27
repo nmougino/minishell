@@ -6,7 +6,7 @@
 #    By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/07 23:21:20 by nmougino          #+#    #+#              #
-#    Updated: 2016/09/27 04:27:19 by nmougino         ###   ########.fr        #
+#    Updated: 2016/09/27 05:11:30 by nmougino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ OBJDIR =	objs
 
 #	Liste des sources
 SRC =		main.c \
+			bi_echo.c \
 			exe_bi.c \
 			env_conv.c \
 			env_init.c \
@@ -36,6 +37,7 @@ SRC =		main.c \
 			exe_fork.c \
 			free_dep.c \
 			get_exe.c \
+			is_env.c \
 			wheel.c
 LIB =		ft
 OBJ =		$(SRC:.c=.o)
