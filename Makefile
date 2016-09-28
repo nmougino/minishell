@@ -6,7 +6,7 @@
 #    By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/07 23:21:20 by nmougino          #+#    #+#              #
-#    Updated: 2016/09/27 05:11:30 by nmougino         ###   ########.fr        #
+#    Updated: 2016/09/28 20:45:17 by nmougino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,11 @@ OBJDIR =	objs
 
 #	Liste des sources
 SRC =		main.c \
+			bi_cd.c \
 			bi_echo.c \
 			exe_bi.c \
 			env_conv.c \
+			env_get.c \
 			env_init.c \
 			env_treat.c \
 			exe_fork.c \

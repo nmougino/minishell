@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 04:09:04 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/27 05:14:31 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/28 19:33:13 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,6 @@ void		exe_bi(t_env **menv, char **com)
 	}
 	else if (!ft_strcmp(com[0], "echo"))
 		bi_echo(*menv, com);
+	else if (!ft_strcmp(com[0], "cd"))
+		bi_cd(*menv, com);
 }
