@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/13 12:02:17 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/19 01:06:28 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/28 20:44:08 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
 # include <sys/stat.h>
 # include "libft.h"
 
-/*
-**	venv contient les variables d'environement
-**	on peut envisager d'ajouter une autre structure pour stocker l'historique
-*/
-
 typedef struct		s_env
 {
 	char			*name;
@@ -30,21 +25,35 @@ typedef struct		s_env
 	struct s_env	*next;
 }					t_env;
 
-void				wheel(t_env *menv);
-
-void				env_set(t_env *env, char *new_val);
-t_env				*env_get(t_env *menv, char *tar);
-void				env_add(t_env **menv, const char *name, char *cont);
-int					env_rm(t_env **menv, char *tar);
-
-t_env				*env_init(char **env);
-
-int					exe_exe(t_env *menv, char *line);
-
-void				bi_env(t_env *menv);
-
-void				free_av(char **av);
-void				free_env_one(t_env *env);
 void				free_env(t_env *menv);
+void				env_del_one(t_env *elem);
+void				free_com(char **com);
+
+t_env				*env_new(char *name, char *cont);
+void				env_add(t_env **menv, char *name, char *cont);
+int					env_rm(t_env **menv, char *tar);
+void				env_disp(t_env *menv);
+int					env_set(t_env *menv, char *tar, char *new_cont);
+
+char				*env_get(t_env *menv, char *tar);
+
+int					is_env(t_env *menv, char *tar);
+
+t_env				*env_init(char **native);
+
+char				*get_exe(char *pathes, char *exe);
+
+void				exe_fork(t_env *menv, char **com);
+
+void				exe_bi(t_env **menv, char **com);
+
+void				bi_cd(t_env *menv, char **com);
+
+void				bi_echo(t_env *env, char **com);
+
+size_t				get_env_len(t_env *env);
+char				**env_conv(t_env *menv);
+
+void				wheel(t_env *menv);
 
 #endif
