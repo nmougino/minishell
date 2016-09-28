@@ -1,46 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_dep.c                                         :+:      :+:    :+:   */
+/*   env_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/21 17:13:19 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/24 21:52:39 by nmougino         ###   ########.fr       */
+/*   Created: 2016/09/28 20:42:15 by nmougino          #+#    #+#             */
+/*   Updated: 2016/09/28 20:44:49 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	env_del_one(t_env *elem)
+char	*env_get(t_env *menv, char *tar)
 {
-	free(elem->name);
-	free(elem->cont);
-	free(elem);
-}
-
-void	free_env(t_env *menv)
-{
-	t_env	*tmp;
-
-	while (menv)
-	{
-		tmp = menv->next;
-		env_del_one(menv);
-		menv = tmp;
-	}
-}
-
-void	free_com(char **com)
-{
-	int	i;
-
-	i = 0;
-	if (com)
-	{
-		while (com[i])
-			free(com[i++]);
-		free(com[i]);
-		free(com);
-	}
+	while (menv && ft_strcmp(menv->name, tar))
+		menv = menv->next;
+	return (menv ? menv->cont : NULL);
 }

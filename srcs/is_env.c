@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   srcsbi_env.c                                       :+:      :+:    :+:   */
+/*   is_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/16 23:58:05 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/17 00:00:08 by nmougino         ###   ########.fr       */
+/*   Created: 2016/09/27 04:50:35 by nmougino          #+#    #+#             */
+/*   Updated: 2016/09/27 04:50:36 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	bi_env(t_env *menv)
+int		is_env(t_env *menv, char *tar)
 {
 	while (menv)
 	{
-		ft_putstr(menv->name);
-		write(1, "=", 1);
-		ft_putendl(menv->cont);
+		if (!ft_strcmp(tar, menv->name))
+			return (1);
 		menv = menv->next;
 	}
+	return (0);
 }

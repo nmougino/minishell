@@ -5,68 +5,87 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/16 03:31:29 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/17 18:27:19 by nmougino         ###   ########.fr       */
+/*   Created: 2016/09/21 13:55:04 by nmougino          #+#    #+#             */
+/*   Updated: 2016/09/22 14:24:18 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_env	*env_new(char *name, char *cont)
+t_env	*env_new(char *name, char *cont)
 {
-	t_env	*new;
+	t_env	*ans;
 
-	if ((new = (t_env *)malloc(sizeof(t_env))))
-	{
-		new->name = ft_strdup(name);
-		new->cont = cont;
-		new->next = NULL;
-	}
-	return (new);
+	ans = (t_env *)malloc(sizeof(t_env));
+	ans->next = NULL;
+	ans->name = ft_strdup(name);
+	ans->cont = ft_strdup(cont);
+	return (ans);
 }
 
-char	*env_extract(char **env, char *tar)
+int		env_set(t_env *menv, char *tar, char *new_cont)
 {
-	char	*ans;
-	size_t	len;
-
-	len = ft_strlen(tar);
-	while (ft_strncmp(*env, tar, len))
-		++env;
-	ans = ft_strdup((*env) + len + 1);
-	return (ans);
+	while (menv && ft_strcmp(menv->name, tar))
+		menv = menv->next;
+	if (!menv)
+		return (0);
+	free(menv->cont);
+	menv->cont = ft_strdup(new_cont);
+	return (1);
 }
 
 void	env_add(t_env **menv, char *name, char *cont)
 {
-	t_env	*new;
-	t_env	*cur;
+	t_env	*elem;
+	t_env	*tmp;
 
-	if ((new = env_new(name, cont)))
+	elem = env_new(name, cont);
+	if (!*menv)
+		*menv = elem;
+	else
 	{
-		if (!(*menv))
-			*menv = new;
-		else
-		{
-			cur = *menv;
-			while (cur->next)
-				cur = cur->next;
-			cur->next = new;
-		}
+		tmp = *menv;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = elem;
 	}
 }
 
-t_env	*env_init(char **env)
+int		env_rm(t_env **menv, char *tar)
 {
-	t_env	*menv;
-	char	*cont;
+	t_env	*prev;
+	t_env	*cur;
 
-	menv = NULL;
-	cont = env_extract(env, "PWD");
-	env_add(&menv, "PWD", cont);
-	cont = env_extract(env, "HOME");
-	env_add(&menv, "HOME", cont);
-	cont = env_extract(env, "LOGNAME");
-	env_add(&menv, "LOGNAME", cont);
-	return (menv);
+	if (!menv || !(*menv))
+		return (0);
+	if (!ft_strcmp((*menv)->name, tar))
+	{
+		cur = *menv;
+		(*menv) = (*menv)->next;
+		env_del_one(cur);
+		return (1);
+	}
+	prev = *menv;
+	cur = (*menv)->next;
+	while (cur && ft_strcmp(cur->name, tar))
+	{
+		prev = cur;
+		cur = cur->next;
+	}
+	if (!cur)
+		return (0);
+	prev->next = cur->next;
+	env_del_one(cur);
+	return (1);
+}
+
+void	env_disp(t_env *menv)
+{
+	while (menv)
+	{
+		ft_putstr(menv->name);
+		write(1, "=", 1);
+		ft_putendl(menv->cont);
+		menv = menv->next;
+	}
 }

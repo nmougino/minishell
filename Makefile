@@ -6,15 +6,15 @@
 #    By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/07 23:21:20 by nmougino          #+#    #+#              #
-#    Updated: 2016/09/17 18:07:34 by nmougino         ###   ########.fr        #
+#    Updated: 2016/09/28 20:45:17 by nmougino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	Compilator - clang est plus sur que gcc
 CC =		clang
 CFLAGS =	-Wall -Wextra -Werror
-ADDFLAGS =	-Weverything -Wno-padded
-#ADDFLAGS =	-fsanitize=address -g3 -Weverything -Wno-padded
+ADDFLAGS =	-fsanitize=address -g3 -Weverything
+#-Wno-padded
 
 #	Binary
 NAME =		minishell
@@ -29,9 +29,18 @@ OBJDIR =	objs
 
 #	Liste des sources
 SRC =		main.c \
-			bi_env.c \
+			bi_cd.c \
+			bi_echo.c \
+			exe_bi.c \
+			env_conv.c \
+			env_get.c \
+			env_init.c \
 			env_treat.c \
-			free_dep.c
+			exe_fork.c \
+			free_dep.c \
+			get_exe.c \
+			is_env.c \
+			wheel.c
 LIB =		ft
 OBJ =		$(SRC:.c=.o)
 
