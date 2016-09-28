@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/13 12:02:17 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/28 20:44:08 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/28 22:51:46 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include "libft.h"
+
+# define malloc(x) NULL
 
 typedef struct		s_env
 {

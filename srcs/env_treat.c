@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 13:55:04 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/22 14:24:18 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/28 23:09:02 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ t_env	*env_new(char *name, char *cont)
 {
 	t_env	*ans;
 
-	ans = (t_env *)malloc(sizeof(t_env));
-	ans->next = NULL;
-	ans->name = ft_strdup(name);
-	ans->cont = ft_strdup(cont);
+	if ((ans = (t_env *)malloc(sizeof(t_env))))
+	{
+		ans->next = NULL;
+		ans->name = ft_strdup(name);
+		ans->cont = ft_strdup(cont);
+	}
 	return (ans);
 }
 
