@@ -6,25 +6,27 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:24:56 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/28 23:17:14 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/28 23:45:49 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	**com_init(t_env *env)
+static void	putprompt(t_env *menv)
+{
+	if (is_env(menv, "PROMPT"))
+		ft_putstr(env_get(menv, "PROMPT"));
+	else
+		write(1, "msh:", 4);
+	write(1, " ", 1);
+}
+
+static char	**com_init(void)
 {
 	char	*line;
 	char	**ans;
 
 	line = NULL;
-	while (env && ft_strcmp(env->name, "PROMPT"))
-		env = env->next;
-	if (env)
-	{
-		ft_putstr(env->cont);
-		write(1, " ", 1);
-	}
 	get_next_line(0, &line);
 	if (*line)
 		ans = ft_strsplit(line, ' ');
@@ -63,7 +65,8 @@ void		wheel(t_env *menv)
 	live = 1;
 	while (live)
 	{
-		com = com_init(menv);
+		putprompt(menv);
+		com = com_init();
 		if (com && *com && **com)
 		{
 			if (!ft_strcmp(com[0], "exit"))
