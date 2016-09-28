@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/24 21:45:42 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/26 22:14:24 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/28 20:58:25 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,28 @@ static void	do_fork(char *exe, char **com, t_env *menv)
 	}
 }
 
+static void	exe_error(char *com)
+{
+	struct stat	buf;
+
+	if (ft_strchr(com, '/'))
+	{
+		if (lstat(com, &buf))
+			ft_dprintf(2, "minishell: no such file or directory: %s\n", com);
+		else if (access(com, F_OK))
+			ft_dprintf(2, "minishell: file is not accessible: %s\n", com);
+		else if (access(com, X_OK))
+			ft_dprintf(2, "minishell: permission denied: %s\n", com);
+	}
+	else
+		ft_dprintf(2, "minishell: command not found: %s\n", com);
+}
+
 void		exe_fork(t_env *menv, char **com)
 {
-	t_env	*tmp;
-	char	*path;
-	char	*exe;
+	t_env		*tmp;
+	char		*path;
+	char		*exe;
 
 	tmp = menv;
 	path = NULL;
@@ -51,5 +68,5 @@ void		exe_fork(t_env *menv, char **com)
 	if (exe)
 		do_fork(exe, com, menv);
 	else
-		ft_dprintf(2, "minishell: command not found: %s\n", com[0]);
+		exe_error(com[0]);
 }
