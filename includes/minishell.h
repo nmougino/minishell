@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/13 12:02:17 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/28 22:51:46 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/29 17:17:28 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include "libft.h"
-
-# define malloc(x) NULL
 
 typedef struct		s_env
 {
@@ -56,6 +54,6 @@ void				bi_echo(t_env *env, char **com);
 size_t				get_env_len(t_env *env);
 char				**env_conv(t_env *menv);
 
-void				wheel(t_env *menv);
+void				wheel(t_env **menv);
 
 #endif

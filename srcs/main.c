@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/19 05:41:24 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/23 17:31:30 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/29 17:17:01 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	menv = env_init(env);
-	wheel(menv);
+	wheel(&menv);
 	free_env(menv);
 	return (0);
 }

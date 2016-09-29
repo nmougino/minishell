@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:24:56 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/28 23:45:49 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/29 17:16:53 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	is_bi(char **com)
 	return (0);
 }
 
-void		wheel(t_env *menv)
+void		wheel(t_env **menv)
 {
 	int		live;
 	char	**com;
@@ -65,16 +65,16 @@ void		wheel(t_env *menv)
 	live = 1;
 	while (live)
 	{
-		putprompt(menv);
+		putprompt(*menv);
 		com = com_init();
 		if (com && *com && **com)
 		{
 			if (!ft_strcmp(com[0], "exit"))
 				live = 0;
 			else if (is_bi(com))
-				exe_bi(&menv, com);
+				exe_bi(menv, com);
 			else
-				exe_fork(menv, com);
+				exe_fork(*menv, com);
 		}
 		free_com(com);
 	}
