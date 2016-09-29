@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:24:56 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/29 20:36:08 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/29 21:44:18 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,25 @@ static void	putprompt(t_env *menv)
 		write(1, "msh:", 4);
 	write(1, " ", 1);
 }
-
 static char	**com_init(void)
 {
 	char	*line;
 	char	**ans;
 
 	line = NULL;
-	get_next_line(0, &line);
+	if (!get_next_line(0, &line) && (ans = (char **)malloc(sizeof(char *) * 2)))
+	{
+		ans[0] = ft_strdup("exit");
+		ans[1] = NULL;
+		write(1, "\n", 1);
+		return (ans);
+	}
 	if (*line)
 		ans = ft_strsplit(line, ' ');
-	else
+	else if ((ans = (char **)malloc(sizeof(char *) * 2)))
 	{
-		if ((ans = (char **)malloc(sizeof(char *) * 2)))
-		{
-			ans[0] = ft_strnew(0);
-			ans[1] = NULL;
-		}
+		ans[0] = ft_strnew(0);
+		ans[1] = NULL;
 	}
 	free(line);
 	return (ans);
