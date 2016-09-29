@@ -6,7 +6,7 @@
 #    By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/07 23:21:20 by nmougino          #+#    #+#              #
-#    Updated: 2016/09/28 20:45:17 by nmougino         ###   ########.fr        #
+#    Updated: 2016/09/29 18:26:58 by nmougino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ OBJDIR =	objs
 SRC =		main.c \
 			bi_cd.c \
 			bi_echo.c \
+			bi_setenv.c \
 			exe_bi.c \
 			env_conv.c \
 			env_get.c \
