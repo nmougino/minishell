@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:24:56 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/29 17:16:53 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/29 20:15:18 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char	**com_init(void)
 		ans = ft_strsplit(line, ' ');
 	else
 	{
-		if	((ans = (char **)malloc(sizeof(char *) * 2)))
+		if ((ans = (char **)malloc(sizeof(char *) * 2)))
 		{
 			ans[0] = ft_strnew(0);
 			ans[1] = NULL;
