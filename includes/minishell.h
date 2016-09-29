@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/13 12:02:17 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/29 17:17:28 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/29 18:26:31 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void				exe_bi(t_env **menv, char **com);
 void				bi_cd(t_env *menv, char **com);
 
 void				bi_echo(t_env *env, char **com);
+
+void				bi_setenv(t_env **menv, char **com);
 
 size_t				get_env_len(t_env *env);
 char				**env_conv(t_env *menv);

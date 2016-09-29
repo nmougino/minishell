@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exe_bi.c                                           :+:      :+:    :+:   */
+/*   bi_setenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 04:09:04 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/29 18:26:44 by nmougino         ###   ########.fr       */
+/*   Created: 2016/09/29 18:23:20 by nmougino          #+#    #+#             */
+/*   Updated: 2016/09/29 18:27:51 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		exe_bi(t_env **menv, char **com)
+void	bi_setenv(t_env **menv, char **com)
 {
-	if (!ft_strcmp(com[0], "env"))
-		env_disp(*menv);
-	else if (!ft_strcmp(com[0], "setenv"))
-		bi_setenv(menv, com);
-	else if (!ft_strcmp(com[0], "unsetenv"))
+	if (com[1] && com[2])
 	{
-		if (com[1])
-			env_rm(menv, com[1]);
+		if (!is_env(*menv, com[1]))
+			env_add(menv, com[1], com[2]);
 		else
-			ft_putendl("minishell: unsetenv: usage: unsetenv [NAME]");
+			env_set(*menv, com[1], com[2]);
 	}
-	else if (!ft_strcmp(com[0], "echo"))
-		bi_echo(*menv, com);
-	else if (!ft_strcmp(com[0], "cd"))
-		bi_cd(*menv, com);
+	else
+		ft_putendl("minishell: setenv: usage: setenv [NAME] [VALUE]");
 }
