@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 13:55:04 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/28 23:09:02 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/29 20:11:11 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,13 @@ int		env_set(t_env *menv, char *tar, char *new_cont)
 	return (1);
 }
 
-void	env_add(t_env **menv, char *name, char *cont)
+int		env_add(t_env **menv, char *name, char *cont)
 {
 	t_env	*elem;
 	t_env	*tmp;
 
+	if (is_env(*menv, name))
+		return (0);
 	elem = env_new(name, cont);
 	if (!*menv)
 		*menv = elem;
@@ -51,6 +53,7 @@ void	env_add(t_env **menv, char *name, char *cont)
 			tmp = tmp->next;
 		tmp->next = elem;
 	}
+	return (1);
 }
 
 int		env_rm(t_env **menv, char *tar)
