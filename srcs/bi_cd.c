@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:05:04 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/28 20:47:51 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/10/01 01:16:33 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	bi_chdir(t_env *menv, char *com)
 	if (chdir(com))
 		bi_cd_err(com);
 	else
+	{
 		if (is_env(menv, "PWD"))
 		{
 			if (!is_env(menv, "OLDPWD"))
@@ -48,6 +49,7 @@ static void	bi_chdir(t_env *menv, char *com)
 			else
 				bi_cd_addpwd(menv);
 		}
+	}
 }
 
 void		bi_cd(t_env *menv, char **com)
@@ -60,5 +62,12 @@ void		bi_cd(t_env *menv, char **com)
 			ft_dprintf(2, "cd: HOME not set\n");
 	}
 	else
-		bi_chdir(menv, com[1]);
+	{
+		if (ft_strcmp("-", com[1]))
+			bi_chdir(menv, com[1]);
+		else if (is_env(menv, "OLDPWD"))
+			bi_chdir(menv, env_get(menv, "OLDPWD"));
+		else
+			ft_dprintf(2, "cd: OLDPWD not set\n");
+	}
 }

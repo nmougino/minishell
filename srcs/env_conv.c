@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/25 23:38:09 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/26 20:19:36 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/28 23:16:16 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,19 @@ char	**env_conv(t_env *menv)
 
 	i = 0;
 	len = get_env_len(menv) + 1;
-	ans = (char **)malloc(sizeof(char *) * len);
-	while (menv)
+	if ((ans = (char **)malloc(sizeof(char *) * len)))
 	{
-		ans[i] = ft_strnew(sizeof(char) *
-			(ft_strlen(menv->name) + ft_strlen(menv->cont) + 1));
-		ft_strcpy(ans[i], menv->name);
-		ft_strcat(ans[i], "=");
-		ft_strcat(ans[i], menv->cont);
-		++i;
-		menv = menv->next;
+		while (menv)
+		{
+			ans[i] = ft_strnew(sizeof(char) *
+				(ft_strlen(menv->name) + ft_strlen(menv->cont) + 1));
+			ft_strcpy(ans[i], menv->name);
+			ft_strcat(ans[i], "=");
+			ft_strcat(ans[i], menv->cont);
+			++i;
+			menv = menv->next;
+		}
+		ans[i] = NULL;
 	}
-	ans[i] = NULL;
 	return (ans);
 }

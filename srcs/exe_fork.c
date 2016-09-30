@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/24 21:45:42 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/28 20:58:25 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/10/01 01:45:14 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ static void	do_fork(char *exe, char **com, t_env *menv)
 	pid = fork();
 	env = env_conv(menv);
 	if (!pid)
+	{
 		execve(exe, com, env);
+		ft_printf("minishell: permission denied: %s\n", exe);
+		exit(0);
+	}
 	else
 	{
 		waitpid(pid, NULL, 0);

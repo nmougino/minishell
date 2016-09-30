@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 17:53:04 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/26 22:19:17 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/10/01 01:35:01 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	env_init_extract(t_env **menv, char *nat)
 t_env		*env_init(char **native)
 {
 	t_env	*menv;
+	char	*cpath;
 
 	menv = NULL;
 	while (*native)
@@ -41,7 +42,15 @@ t_env		*env_init(char **native)
 		env_init_extract(&menv, *native);
 		++native;
 	}
-	env_rm(&menv, "SHELL");
-	env_add(&menv, "PROMPT", "msh.>>");
+	cpath = getcwd(NULL, 0);
+	if (is_env(menv, "SHELL"))
+		env_set(menv, "SHELL", cpath);
+	else
+		env_add(&menv, "SHELL", cpath);
+	free(cpath);
+	if (is_env(menv, "PROMPT"))
+		env_set(menv, "PROMPT", "^.^$>");
+	else
+		env_add(&menv, "PROMPT", "^.^$>");
 	return (menv);
 }
