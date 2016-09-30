@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:24:56 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/29 21:52:21 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/10/01 00:29:41 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void	putprompt(t_env *menv)
 		ft_putstr(DEFPROMPT);
 	write(1, " ", 1);
 }
-static char	**com_init(void)
+
+static char	**com_init(t_env *menv)
 {
 	char	*line;
 	char	**ans;
@@ -34,7 +35,7 @@ static char	**com_init(void)
 		return (ans);
 	}
 	if (*line)
-		ans = ft_strsplit(line, ' ');
+		ans = com_treat(line, menv);
 	else if ((ans = (char **)malloc(sizeof(char *) * 2)))
 	{
 		ans[0] = ft_strnew(0);
@@ -69,7 +70,7 @@ void		wheel(t_env **menv)
 	while (live)
 	{
 		putprompt(*menv);
-		com = com_init();
+		com = com_init(*menv);
 		if (com && *com && **com)
 		{
 			if (!ft_strcmp(com[0], "exit"))

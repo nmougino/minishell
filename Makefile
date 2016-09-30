@@ -6,7 +6,7 @@
 #    By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/07 23:21:20 by nmougino          #+#    #+#              #
-#    Updated: 2016/09/29 18:26:58 by nmougino         ###   ########.fr        #
+#    Updated: 2016/09/30 23:28:46 by nmougino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,12 +32,13 @@ SRC =		main.c \
 			bi_cd.c \
 			bi_echo.c \
 			bi_setenv.c \
+			com_treat.c \
 			exe_bi.c \
+			exe_fork.c \
 			env_conv.c \
 			env_get.c \
 			env_init.c \
 			env_treat.c \
-			exe_fork.c \
 			free_dep.c \
 			get_exe.c \
 			is_env.c \
