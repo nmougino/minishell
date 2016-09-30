@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 04:09:04 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/29 20:53:48 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/10/01 01:30:07 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,26 @@ static void	bi_help(t_env *menv)
 	}
 }
 
+/*
+** env -i simple,
+** le posix gere l'ajout de variable par dessus un env vierge
+*/
+
+static void	bi_env(t_env *menv, char **com)
+{
+	if (com[1] && ft_strequ("-i", com[1]))
+	{
+		if (com[2])
+			exe_fork(NULL, com + 2);
+	}
+	else
+		env_disp(menv);
+}
+
 void		exe_bi(t_env **menv, char **com)
 {
 	if (!ft_strcmp(com[0], "env"))
-		env_disp(*menv);
+		bi_env(*menv, com);
 	else if (!ft_strcmp(com[0], "setenv"))
 		bi_setenv(menv, com);
 	else if (!ft_strcmp(com[0], "unsetenv"))

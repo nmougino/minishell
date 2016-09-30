@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/13 12:02:17 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/30 23:28:55 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/10/01 01:34:55 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <sys/stat.h>
 # include "libft.h"
 
-# define DEFPROMPT "msh>"
+# define DEFPROMPT "def>"
 
 typedef struct			s_env
 {

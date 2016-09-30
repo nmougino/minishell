@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:05:04 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/30 16:37:31 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/10/01 01:16:33 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ void		bi_cd(t_env *menv, char **com)
 	{
 		if (ft_strcmp("-", com[1]))
 			bi_chdir(menv, com[1]);
-		else
+		else if (is_env(menv, "OLDPWD"))
 			bi_chdir(menv, env_get(menv, "OLDPWD"));
+		else
+			ft_dprintf(2, "cd: OLDPWD not set\n");
 	}
 }
