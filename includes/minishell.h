@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/13 12:02:17 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/29 23:08:52 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/09/30 16:38:30 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include "libft.h"
-
-#define malloc(x) NULL
 
 # define DEFPROMPT "msh>"
 
