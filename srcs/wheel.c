@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:24:56 by nmougino          #+#    #+#             */
-/*   Updated: 2016/09/29 20:15:18 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/10/01 00:29:41 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,29 @@ static void	putprompt(t_env *menv)
 	if (is_env(menv, "PROMPT"))
 		ft_putstr(env_get(menv, "PROMPT"));
 	else
-		write(1, "msh:", 4);
+		ft_putstr(DEFPROMPT);
 	write(1, " ", 1);
 }
 
-static char	**com_init(void)
+static char	**com_init(t_env *menv)
 {
 	char	*line;
 	char	**ans;
 
 	line = NULL;
-	get_next_line(0, &line);
-	if (*line)
-		ans = ft_strsplit(line, ' ');
-	else
+	if (!get_next_line(0, &line) && (ans = (char **)malloc(sizeof(char *) * 2)))
 	{
-		if ((ans = (char **)malloc(sizeof(char *) * 2)))
-		{
-			ans[0] = ft_strnew(0);
-			ans[1] = NULL;
-		}
+		ans[0] = ft_strdup("exit");
+		ans[1] = NULL;
+		write(1, "\n", 1);
+		return (ans);
+	}
+	if (*line)
+		ans = com_treat(line, menv);
+	else if ((ans = (char **)malloc(sizeof(char *) * 2)))
+	{
+		ans[0] = ft_strnew(0);
+		ans[1] = NULL;
 	}
 	free(line);
 	return (ans);
@@ -44,7 +47,8 @@ static char	**com_init(void)
 
 static int	is_bi(char **com)
 {
-	const char	*tab[6] = {"echo", "cd", "setenv", "unsetenv", "env", NULL};
+	const char	*tab[7] = {"echo", "cd", "setenv", "unsetenv", "env",
+			"help", NULL};
 	int			i;
 
 	i = 0;
@@ -66,7 +70,7 @@ void		wheel(t_env **menv)
 	while (live)
 	{
 		putprompt(*menv);
-		com = com_init();
+		com = com_init(*menv);
 		if (com && *com && **com)
 		{
 			if (!ft_strcmp(com[0], "exit"))
