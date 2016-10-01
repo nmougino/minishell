@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/13 12:02:17 by nmougino          #+#    #+#             */
-/*   Updated: 2016/10/01 01:34:55 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/10/01 02:13:59 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ char					**env_conv(t_env *menv);
 
 char					**com_treat(char *line, t_env *menv);
 
+int						is_bi(char **com);
 void					wheel(t_env **menv);
 
 #endif

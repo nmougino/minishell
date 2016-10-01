@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 04:09:04 by nmougino          #+#    #+#             */
-/*   Updated: 2016/10/01 01:30:07 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/10/01 02:17:45 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,14 @@ static void	bi_help(t_env *menv)
 
 static void	bi_env(t_env *menv, char **com)
 {
+	t_env	*env;
+
+	env = NULL;
 	if (com[1] && ft_strequ("-i", com[1]))
 	{
-		if (com[2])
+		if (com[2] && is_bi(com + 2))
+			exe_bi(&env, com + 2);
+		else if (com[2])
 			exe_fork(NULL, com + 2);
 	}
 	else

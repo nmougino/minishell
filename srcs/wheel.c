@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 00:24:56 by nmougino          #+#    #+#             */
-/*   Updated: 2016/10/01 00:29:41 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/10/01 02:13:42 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	**com_init(t_env *menv)
 	return (ans);
 }
 
-static int	is_bi(char **com)
+int			is_bi(char **com)
 {
 	const char	*tab[7] = {"echo", "cd", "setenv", "unsetenv", "env",
 			"help", NULL};
